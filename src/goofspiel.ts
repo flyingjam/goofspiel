@@ -55,7 +55,7 @@ class Deck{
         if(to_be_removed < 0){
             return;
         }
-        this.cards = this.cards.splice(to_be_removed, 1);
+        this.cards.splice(to_be_removed, 1);
     }
 
     clone() : Deck{
@@ -85,6 +85,13 @@ class Player{
         temp.deck = this.deck.clone();
         return temp;
     }
+}
+
+enum GameCondition{
+    P1Win,
+    P2Win,
+    Tie,
+    Ongoing
 }
 
 class GoofSpielState{
@@ -159,16 +166,37 @@ class GoofSpielState{
         return temp;
     }
 
+    condition() : GameCondition{
+        if(this.end()){
+            if(this.p1.total_score > this.p2.total_score){
+                return GameCondition.P1Win;
+            }
+            else if (this.p2.total_score > this.p1.total_score){
+                return GameCondition.P2Win;
+            }
+            else{
+                return GameCondition.Tie;
+            }
+        }
+        return GameCondition.Tie;
+    }
+
+    end() : boolean{
+        return (this.p1.deck.cards.length <= 0 || this.p2.deck.cards.length <= 0)
+    }
+
     public toString = () : string => {
         let str = "\n";
-        str += "Current Prize Card" + this.prize_deck.peek();
+        str += "Current Prize Card " + this.prize_deck.peek();
         str += "\n" + this.p1.toString();
+        str += "\n Current cards available: " + this.p1.deck.cards;
         if(this.p1_choice !== null)
             str += "\nCurrent choice: " + this.p1_choice.toString();
         str += "\n" + this.p2.toString();
+        str += "\n Current cards available: " + this.p2.deck.cards;
         if(this.p2_choice !== null)
             str += "\nCurrent choice: " + this.p2_choice.toString();
-
+        str += "\nCondition: " + this.condition();
         return str;
     }
 }

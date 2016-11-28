@@ -1,8 +1,8 @@
 "use strict";
-var goofspiel = require("./goofspiel");
-var game = new goofspiel.GoofSpielState();
-var p1 = game.p1;
-var p2 = game.p2;
+const goofspiel = require("./goofspiel");
+let game = new goofspiel.GoofSpielState();
+let p1 = game.p1;
+let p2 = game.p2;
 console.log("" + game);
 game.choose(p1, new goofspiel.Card(1));
 game.choose(p2, new goofspiel.Card(2));
