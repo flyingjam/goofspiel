@@ -1,4 +1,3 @@
-
 class Card{
     readonly value : number;
     constructor(value : number){
@@ -94,6 +93,7 @@ enum GameCondition{
     Ongoing
 }
 
+
 class GoofSpielState{
     p1 : Player = new Player("p1");
     p2 : Player = new Player("p2");
@@ -185,6 +185,10 @@ class GoofSpielState{
         return (this.p1.deck.cards.length <= 0 || this.p2.deck.cards.length <= 0)
     }
 
+    legal_moves(player : Player) : Card[]{
+        return player.deck.cards;
+    }
+
     public toString = () : string => {
         let str = "\n";
         str += "Current Prize Card " + this.prize_deck.peek();
@@ -202,5 +206,6 @@ class GoofSpielState{
 }
 
 export { GoofSpielState }
+export { Player }
 export { Deck }
 export { Card }
