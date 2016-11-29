@@ -1,15 +1,12 @@
 import * as goofspiel from "./goofspiel"
+import * as ai from "./AI"
+
+//dirty hack to get tsc to shut up about the lack of types
+//on the library
+declare function require(line : string) : any;
+const readline : any  = require('readline-sync');
+
+let g = new goofspiel.GoofSpielState();
+ai.random_simulation(g, g.p1);
 
 
-let game = new goofspiel.GoofSpielState();
-let p1 = game.p1;
-let p2 = game.p2;
-
-console.log("" + game);
-
-game.choose(p1, new goofspiel.Card(1));
-game.choose(p2, new goofspiel.Card(2));
-
-console.log("" + game);
-
-console.log("Hello World!");

@@ -206,6 +206,7 @@ class GoofSpielState{
 }
 
 export { GoofSpielState }
+export { GameCondition }
 export { Player }
 export { Deck }
 export { Card }
