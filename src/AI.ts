@@ -8,13 +8,15 @@ function get_random_int(min : number, max : number) : number {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function choose_random(legal_moves : goofspiel.Card[]){
+    let random_index = get_random_int(0, legal_moves.length);
+    return legal_moves[random_index];
+}
+
 function random(player : goofspiel.Player, state : goofspiel.GoofSpielState) : goofspiel.Card{
     let possible_moves = state.legal_moves(player);
     console.log("Possible moves: " + possible_moves);
-    let random_index = get_random_int(0, possible_moves.length);
-    console.log("Index: " + random_index);
-
-    return possible_moves[random_index];
+    return choose_random(possible_moves);
 }
 
 function random_simulation(state : goofspiel.GoofSpielState, player : goofspiel.Player) : goofspiel.GameCondition{
@@ -50,4 +52,5 @@ function ucb1(win_value : number, num_played : number, total_played : number, c?
 
 export { ai }
 export { random }
+export { choose_random }
 export { random_simulation }
