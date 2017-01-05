@@ -1,10 +1,6 @@
 "use strict";
 const goofspiel = require("./goofspiel");
-let game = new goofspiel.GoofSpielState();
-let p1 = game.p1;
-let p2 = game.p2;
-console.log("" + game);
-game.choose(p1, new goofspiel.Card(1));
-game.choose(p2, new goofspiel.Card(2));
-console.log("" + game);
-console.log("Hello World!");
+const duct = require("./duct");
+const readline = require('readline-sync');
+let g = new goofspiel.GoofSpielState();
+duct.search(g.p1, g);

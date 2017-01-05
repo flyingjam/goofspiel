@@ -50,7 +50,7 @@ class Deck {
     }
     clone() {
         let temp = new Deck();
-        for (let i = 0; i < temp.cards.length; i++) {
+        for (let i = 0; i < this.cards.length; i++) {
             temp.cards[i] = this.cards[i].clone();
         }
         return temp;
@@ -73,6 +73,7 @@ class Player {
         return temp;
     }
 }
+exports.Player = Player;
 var GameCondition;
 (function (GameCondition) {
     GameCondition[GameCondition["P1Win"] = 0] = "P1Win";
@@ -80,6 +81,7 @@ var GameCondition;
     GameCondition[GameCondition["Tie"] = 2] = "Tie";
     GameCondition[GameCondition["Ongoing"] = 3] = "Ongoing";
 })(GameCondition || (GameCondition = {}));
+exports.GameCondition = GameCondition;
 class GoofSpielState {
     constructor() {
         this.p1 = new Player("p1");
@@ -165,6 +167,9 @@ class GoofSpielState {
     }
     end() {
         return (this.p1.deck.cards.length <= 0 || this.p2.deck.cards.length <= 0);
+    }
+    legal_moves(player) {
+        return player.deck.cards;
     }
 }
 exports.GoofSpielState = GoofSpielState;

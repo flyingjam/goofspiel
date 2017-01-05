@@ -15,7 +15,7 @@ function choose_random(legal_moves : goofspiel.Card[]){
 
 function random(player : goofspiel.Player, state : goofspiel.GoofSpielState) : goofspiel.Card{
     let possible_moves = state.legal_moves(player);
-    console.log("Possible moves: " + possible_moves);
+    //console.log("Possible moves: " + possible_moves);
     return choose_random(possible_moves);
 }
 
@@ -27,13 +27,12 @@ function random_simulation(state : goofspiel.GoofSpielState, player : goofspiel.
         //choose two random legal moves
         let p1_move = random(copy.p1, copy);
         let p2_move = random(copy.p2, copy);
-        console.log("Choose " + p1_move + " and " + p2_move);
+        //console.log("Choose " + p1_move + " and " + p2_move);
         copy.choose(copy.p1, p1_move);
         copy.choose(copy.p2, p2_move);
     }
 
-    console.log(copy.toString());
-
+    //console.log(copy.toString());
     return copy.condition();
 }
 
@@ -54,3 +53,4 @@ export { ai }
 export { random }
 export { choose_random }
 export { random_simulation }
+export { ucb1 }

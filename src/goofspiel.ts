@@ -1,10 +1,19 @@
 class Card{
+
     readonly value : number;
+
+    //UCB1 statistics
+    win_value : number = 0;
+    num_plays : number = 0;
+
     constructor(value : number){
         this.value = value;
     }
 
     clone(){
+        let card = new Card(this.value);
+        card.win_value = this.win_value;
+        card.num_plays = this.num_plays;
         return new Card(this.value);
     }
 
@@ -59,7 +68,7 @@ class Deck{
 
     clone() : Deck{
         let temp = new Deck();
-        for(let i = 0; i < temp.cards.length; i++){
+        for(let i = 0; i < this.cards.length; i++){
             temp.cards[i] = this.cards[i].clone();
         }
         return temp;
@@ -161,7 +170,6 @@ class GoofSpielState{
         if(this.p2_choice !== null)
             temp.p2_choice = this.p2_choice.clone();
         
- 
         temp.prize_deck = this.prize_deck.clone();
         return temp;
     }
