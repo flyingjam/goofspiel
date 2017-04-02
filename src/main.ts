@@ -8,5 +8,4 @@ const readline : any  = require('readline-sync');
 
 let g = new goofspiel.GoofSpielState();
 g.choose(g.p1, new goofspiel.Card(0))
-duct.search(g.p1, g);
 //ai.random_simulation(g, g.p1);
